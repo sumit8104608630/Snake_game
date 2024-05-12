@@ -1,6 +1,3 @@
-const eat=new Audio("/eating-sound-effect-36186.mp3");
-const gameOver=new Audio("/negative_beeps-6008.mp3")
-const move=new Audio("/hiss3-103123.mp3")
 
 
 let inputDir={x:0,y:0};
@@ -23,7 +20,7 @@ function isgameover(snake){
         if(snake[i].x===snake[0].x && snake[i].y===snake[0].y){
             return true
         }
-        if(snake[0].x>= 18 || snake[0].x<=0 && snake[0].y>= 18 || snake[0].y<=0){
+        if(snake[0].x>= 18 || snake[0].x<=0 || snake[0].y>= 18 || snake[0].y<=0){
             return true
         }
     }
@@ -32,7 +29,6 @@ function isgameover(snake){
 function gameEngine(){
     if(isgameover(snakearr)){
         inputDir={x:0,y:0}
-        gameOver.play()
         alert("Game is over press ok to Restart")
         snakearr=[{x:13,y:15}]
         score=0
@@ -42,7 +38,6 @@ function gameEngine(){
     if(snakearr[0].y===food.y&&snakearr[0].x===food.x){
         snakearr.unshift({x:snakearr[0].x+inputDir.x,y:snakearr[0].y+inputDir.y})
         let a=1;
-        eat.play()
         score +=1
         if(score>highscore){
             highscoreval=score
@@ -97,7 +92,6 @@ else{
 window.requestAnimationFrame(main);
 window.addEventListener('keydown',e=>{
     inputDir={x:0,y:1}
-    move.play()
 
     switch(e.key){
         case "ArrowUp":
